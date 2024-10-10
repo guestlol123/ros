@@ -1,0 +1,9 @@
+create a workspace
+create package with dependencies rospy,geometry_msgs,sensor_msgs,gazebo_ros,numpy,cv2,cv_bridge
+copy paste the files to package
+In the files folder open the yellow_line_world.launch and change line 3 (find pass)
+to your packagename eg : (find your_package_name)
+Change Line 12 from pass to ur package name
+export TURTLEBOT3_MODEL=waffle
+roslaunch package_name yellow_line_world.launch
+rosrun <package_name> <line_follower.py>

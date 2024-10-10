@@ -1,0 +1,6 @@
+create a workspace
+create package with dependencies rospy
+copy paste the files to package
+in Cougarbot.launch edit line 2 and 10  to ur package_name 
+open terminal and run roslaunch <package_name> cougarbot.launch
+open another terminal and run the command from use this to move arm change the values  of x y z

@@ -1,0 +1,7 @@
+basics 
+to create a workspace - mkdir -p ~/workspace_name/src/
+to go inside any folder cd ./
+example cd ./workspace_name/src/
+to create package  - catkin_create_pkg <package_name> <dependencies>
+to update files - source ~/workspace_name/devel/setup.bash
+after every python file make it execuitable by going into its directory using cd command and typing chmod u+x <pythonfile_name.py>

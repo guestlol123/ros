@@ -1,0 +1,6 @@
+create a workspace
+create package with dependencies rospy,geometry_msgs,sensor_msgs
+make it executable by using chmod u+x <pythonfile_name.py>
+export TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+rosrun <package_name> <pythonfile_name.py>

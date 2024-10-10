@@ -1,0 +1,9 @@
+<!-- Hand-made -->
+<launch>
+  <include file="$(find arm)/cougarbot.launch"/>
+  <include file="$(find move)/launch/move_group.launch"/>
+  <include file="$(find move)/launch/moveit_rviz.launch">
+    <arg name="config" value="True"/>
+  </include>
+</launch>
+

@@ -1,0 +1,7 @@
+create a workspace
+create package with the name "move" with dependencies rospy,urdf
+if u dont make the name move u have to change all the name in xml files to ur package file 
+also u need the files for expirement 6 for this to work in the all. launch file edit line 3 into ur exp 6 package directory 
+copy paste the files to package
+roslaunch packagename all.launch
+when rviz opens u can easily plan and execute the arm 
