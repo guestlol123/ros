@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # BEGIN ALL
 import rospy
 from std_msgs.msg import String
@@ -8,11 +8,11 @@ from geometry_msgs.msg import Twist
 key_mapping = { 'w': [ 0, 1], 'x': [0, -1], 
                 'a': [-1, 0], 'd': [1,  0], 
                 's': [ 0, 0] }
-# END KEYMAP
+# END KEYMA
 
 def keys_cb(msg, twist_pub):
   # BEGIN CB
-  if len(msg.data) == 0 or not key_mapping.has_key(msg.data[0]):
+  if len(msg.data) == 0 or msg.data[0] not in key_mapping:
     return # unknown key.
   vels = key_mapping[msg.data[0]]
   # END CB
