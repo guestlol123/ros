@@ -1,22 +1,33 @@
-# Import ROS libraries
+#!/usr/bin/env python
+
 import rospy
-from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import Twist
 
-# Callback function to process laser scan data
-def callback(data):
-    # data.ranges contains the distances measured by the laser scanner
-    min_distance = min(data.ranges)
-    rospy.loginfo("Minimum distance to an obstacle: {:.2f} meters".format(min_distance))
+def move_robot():
+    rospy.init_node('turtlebot_mover', anonymous=True)
+    cmd_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+    rate = rospy.Rate(1)  # 1 Hz
 
-def listener():
-    # Initialize the ROS node
-    rospy.init_node('obstacle_distance_listener', anonymous=True)
+    move_cmd = Twist()
+    move_cmd.linear.x = 0.5  # Forward speed
+    move_cmd.angular.z = 0.0
 
-    # Subscribe to the LaserScan topic
-    rospy.Subscriber('/scan', LaserScan, callback)
+    stop_cmd = Twist()
+    move_cmd.linear.x = 0.0  # Stop
 
-    # Keep the node running
-    rospy.spin()
+    while not rospy.is_shutdown():
+        # Move forward
+        rospy.loginfo("Moving forward")
+        cmd_pub.publish(move_cmd)
+        rospy.sleep(5)  # Move forward for 5 seconds
+
+        # Stop
+        rospy.loginfo("Stopping")
+        cmd_pub.publish(stop_cmd)
+        rospy.sleep(2)  # Stop for 2 seconds
 
 if __name__ == '__main__':
-    listener()
+    try:
+        move_robot()
+    except rospy.ROSInterruptException:
+        pass
