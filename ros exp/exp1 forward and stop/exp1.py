@@ -3,31 +3,30 @@
 import rospy
 from geometry_msgs.msg import Twist
 
-def move_robot():
+def move_turtlebot():
     rospy.init_node('turtlebot_mover', anonymous=True)
-    cmd_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
-    rate = rospy.Rate(1)  # 1 Hz
+    pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+    rate = rospy.Rate(10)  # 10 Hz
 
     move_cmd = Twist()
-    move_cmd.linear.x = 0.5  # Forward speed
-    move_cmd.angular.z = 0.0
-
     stop_cmd = Twist()
-    move_cmd.linear.x = 0.0  # Stop
+
+    move_cmd.linear.x = 0.5  # Move forward with linear velocity 0.5
+    stop_cmd.linear.x = 0.0  # Stop
 
     while not rospy.is_shutdown():
-        # Move forward
+        # Move forward for 2 seconds
         rospy.loginfo("Moving forward")
-        cmd_pub.publish(move_cmd)
-        rospy.sleep(5)  # Move forward for 5 seconds
+        pub.publish(move_cmd)
+        rospy.sleep(2)  # Use rospy.sleep() instead of time.sleep()
 
-        # Stop
+        # Stop for 2 seconds
         rospy.loginfo("Stopping")
-        cmd_pub.publish(stop_cmd)
-        rospy.sleep(2)  # Stop for 2 seconds
+        pub.publish(stop_cmd)
+        rospy.sleep(2)  # Use rospy.sleep() instead of time.sleep()
 
 if __name__ == '__main__':
     try:
-        move_robot()
+        move_turtlebot()
     except rospy.ROSInterruptException:
         pass
